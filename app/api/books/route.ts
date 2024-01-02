@@ -10,7 +10,7 @@ export async function POST(
 
     try {
         const { userId } = auth();
-        const { title } = await req.json();
+        const { title, description } = await req.json();
 
 
         if (!userId) {
@@ -20,6 +20,7 @@ export async function POST(
         const book = await db.book.create({
             data: {
                 title,
+                description,
                 userId
             }
         })
