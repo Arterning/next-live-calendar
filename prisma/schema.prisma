@@ -1,0 +1,24 @@
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model Book {
+    id String @id @default(uuid())
+
+    title       String  @db.Text
+    description String? @db.Text
+
+    categoryId String?
+    category   Category? @relation(fields: [categoryId], references: [id])
+
+    userId String
+    @@index([categoryId])
+}
+
+model Category {
+    id    String @id @default(uuid())
+    name  String @unique
+    books Book[]
+}
