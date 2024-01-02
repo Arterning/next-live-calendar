@@ -1,6 +1,6 @@
-
 import { db } from '@/lib/db';
 import React from 'react';
+import DeleteButton from './_components/delete-button';
 
 interface IBookPageProps {
     params: {
@@ -25,6 +25,7 @@ const BookPage: React.FC<IBookPageProps> = async ({ params }) => {
          <div className='flex flex-col'>
             <p>Title: {book?.title}</p>
             <p>Description: {book?.description}</p>
+            <DeleteButton id={book?.id}/>
          </div>
       </div>
     );
