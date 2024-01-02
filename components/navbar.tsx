@@ -9,11 +9,11 @@ export const NavBar = () => {
             <Link href="/">
                 Home
             </Link>
-            <Link href="/test">
-                Test
+            <Link href="/contacts">
+                Contacts
             </Link>
             <Link href="/book">
-                Book
+                Books
             </Link>
             <UserButton afterSignOutUrl="/"/>
         </div>

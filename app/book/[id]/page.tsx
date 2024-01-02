@@ -1,4 +1,5 @@
 
+import { db } from '@/lib/db';
 import React from 'react';
 
 interface IBookPageProps {
@@ -7,12 +8,25 @@ interface IBookPageProps {
     };
 }
 
-const BookPage: React.FC<IBookPageProps> = ({ params }) => {
+const BookPage: React.FC<IBookPageProps> = async ({ params }) => {
+
+    const book = await db.book.findUnique(
+        {
+            where: {
+                id: params.id,
+            }
+        }
+    );
+
 
     return (
-      <>
-        {params.id} BookPage
-      </>
+      <div className='p-6'>
+         <h1>BookPage Detail</h1>
+         <div className='flex flex-col'>
+            <p>Title: {book?.title}</p>
+            <p>Description: {book?.description}</p>
+         </div>
+      </div>
     );
 };
 
