@@ -32,9 +32,10 @@ const BookPage = () => {
       {data.map((book: Record<string, any>) => (
         <BookCard
           key={book.id}
+          id={book.id}
           title={book.title}
           description={book.description}
-          className="hover:cursor-pointer hover:bg-slate-200"
+          className="hover:bg-slate-200"
         />
       ))}
       </div>
@@ -43,10 +44,12 @@ const BookPage = () => {
 };
 
 const BookCard = ({
+  id, 
   title,
   description,
   className,
 }: {
+  id: string;
   title: string;
   description: string;
   className?: string;
@@ -55,7 +58,9 @@ const BookCard = ({
     <Card className={className}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
+          <Link href={`/book/${id}`}>
+            {title}
+          </Link>
         </CardTitle>
       </CardHeader>
       <CardContent>
