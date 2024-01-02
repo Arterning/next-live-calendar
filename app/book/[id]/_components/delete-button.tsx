@@ -31,7 +31,9 @@ const DeleteButton : React.FC<DeleteButtonProps> = ( { id }) => {
 
   return (
     <ConfirmModal onConfirm={onConfirm}>
-      <Button variant="destructive">Delete</Button>
+      <div className="w-9">
+        <Button variant="destructive">Delete</Button>
+      </div>
     </ConfirmModal>
   );
 }
