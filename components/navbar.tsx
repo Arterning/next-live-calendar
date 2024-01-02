@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { UserButton } from "@clerk/nextjs";
+import ThemeSwitcher from "./theme-switcher";
 
 
 
@@ -15,6 +16,7 @@ export const NavBar = () => {
             <Link href="/book">
                 Books
             </Link>
+            <ThemeSwitcher />
             <UserButton afterSignOutUrl="/"/>
         </div>
     )

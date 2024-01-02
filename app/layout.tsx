@@ -5,6 +5,8 @@ import { NavBar } from '@/components/navbar'
 import { Toaster } from 'react-hot-toast'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Sidebar } from '@/components/sidebar'
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from '@/providers/theme-providers'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,17 +24,21 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          <NavBar/>
-          {/* because navbar is in fixed position, we should add padding top on every page ,
-          we can add common style here for every page*/}
+        <body className={cn(inter.className, "dark")} style={{
+          colorScheme: "dark",
+        }}>
+          <ThemeProvider>
+            <NavBar/>
+            {/* because navbar is in fixed position, we should add padding top on every page ,
+            we can add common style here for every page*/}
 
-          <Sidebar />
+            <Sidebar />
 
-          <Toaster />
-          <main className="md:pl-56 pt-16 h-full">
-            {children}
-          </main>
+            <Toaster />
+            <main className="md:pl-56 pt-16 h-full">
+              {children}
+            </main>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
