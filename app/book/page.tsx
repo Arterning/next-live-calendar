@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { PlusCircle } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PlusCircle } from "lucide-react";
 
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-
+import useBooks from "@/hooks/useBooks";
 
 const BookPage = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
 
-    const { isLoaded, isSignedIn, user } = useUser();
+  const { data = [], error, isLoading, mutate } = useBooks();
 
-    return (
-      <div className="flex gap-3 items-center justify-center p-4 space-x-8 h-full">
+  console.log("BOOK", data);
+
+  return (
+    <div className="p-4 h-full">
+      <div className="flex items-center justify-start gap-5">
         {user != null && (
           <Link href="/book/create">
             <Button>
@@ -21,11 +26,43 @@ const BookPage = () => {
             </Button>
           </Link>
         )}
-        <p>
-          Books are important
-        </p>
+        <p>Books are important</p>
       </div>
-    );
-}
+      <div className="flex items-center justify-start mt-5 gap-5">
+      {data.map((book: Record<string, any>) => (
+        <BookCard
+          key={book.id}
+          title={book.title}
+          description={book.description}
+          className="hover:cursor-pointer hover:bg-slate-200"
+        />
+      ))}
+      </div>
+    </div>
+  );
+};
 
-export default BookPage
+const BookCard = ({
+  title,
+  description,
+  className,
+}: {
+  title: string;
+  description: string;
+  className?: string;
+}) => {
+  return (
+    <Card className={className}>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground">
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-xs text-muted-foreground pt-1">{description}</p>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default BookPage;

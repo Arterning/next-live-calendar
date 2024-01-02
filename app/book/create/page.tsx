@@ -47,7 +47,7 @@ const CreateBookPage: React.FC<ICreateBookPageProps> = (props) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await axios.post("/api/books", values);
-    //   router.push(`/books/${response.data.id}`);
+      router.push(`/book`);
      console.log(response.data);
       toast.success("Book created");
     } catch {
