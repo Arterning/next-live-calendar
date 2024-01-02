@@ -27,12 +27,10 @@ export default function RootLayout({
           {/* because navbar is in fixed position, we should add padding top on every page ,
           we can add common style here for every page*/}
 
-        <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
           <Sidebar />
-        </div>
 
           <Toaster />
-          <main className="md:pl-20 pt-16 h-full">
+          <main className="md:pl-56 pt-16 h-full">
             {children}
           </main>
         </body>
