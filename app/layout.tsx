@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { NavBar } from '@/components/navbar'
 import { Toaster } from 'react-hot-toast'
+import { ClerkProvider } from '@clerk/nextjs'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,17 +19,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <NavBar/>
-        {/* because navbar is in fixed position, we should add padding top on every page ,
-        we can add common style here for every page*/}
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <NavBar/>
+          {/* because navbar is in fixed position, we should add padding top on every page ,
+          we can add common style here for every page*/}
 
-        <Toaster />
-        <main className="md:pl-20 pt-16 h-full">
-          {children}
-        </main>
-      </body>
-    </html>
+          <Toaster />
+          <main className="md:pl-20 pt-16 h-full">
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

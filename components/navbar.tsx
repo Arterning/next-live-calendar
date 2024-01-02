@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { UserButton } from "@clerk/nextjs";
+
 
 
 export const NavBar = () => {
@@ -13,6 +15,7 @@ export const NavBar = () => {
             <Link href="/book">
                 Book
             </Link>
+            <UserButton afterSignOutUrl="/"/>
         </div>
     )
 }
