@@ -27,9 +27,13 @@ const NextBreadcrumb = ({
   const paths = usePathname();
   const pathNames = paths.split("/").filter((path) => path);
 
+  function isNotLast(index: number) {
+    return pathNames.length !== index + 1;
+  }
+
   return (
     <div>
-      <ul className={cn("flex py-5" ,containerClasses)}>
+      <ul className={cn("flex py-5", containerClasses)}>
         <li className={cn("hover:underline mx-2 font-bold", listClasses)}>
           <Link href={"/"}>{homeElement}</Link>
         </li>
@@ -46,7 +50,7 @@ const NextBreadcrumb = ({
               <li className={cn("hover:underline mx-2 font-bold", itemClasses)}>
                 <Link href={href}>{itemLink}</Link>
               </li>
-              {pathNames.length !== index + 1 && separator}
+              {isNotLast(index) && separator}
             </React.Fragment>
           );
         })}
