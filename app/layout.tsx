@@ -24,9 +24,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn(inter.className, "dark")} style={{
-          colorScheme: "dark",
-        }}>
+        <body>
           <ThemeProvider>
             <NavBar/>
             {/* because navbar is in fixed position, we should add padding top on every page ,
