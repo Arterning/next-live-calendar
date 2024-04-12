@@ -8,6 +8,7 @@ import { Sidebar } from "@/components/sidebar";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-providers";
 import NextBreadcrumb from "@/components/bread-crumb";
+import { ProModal } from "@/components/calendar-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
 
             <Sidebar />
 
+            <ProModal />
             <Toaster />
             <main className="md:pl-56 pt-16 h-full">
               <NextBreadcrumb

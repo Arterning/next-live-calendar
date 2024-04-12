@@ -9,22 +9,54 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-
-model Book {
+// 这是用户预定表
+model Reserve {
     id String @id @default(uuid())
+    // 预约时间
+    reserveAt DateTime @db.Date
+    //开始时间
+    startAt String
+    //结束时间
+    endAt String
+    //创业者
+    entrepreneur String
+    //参与者
+    partner String
+    createdAt  DateTime @default(now())
+}
 
-    title       String  @db.Text
-    description String? @db.Text
 
-    categoryId String?
-    category   Category? @relation(fields: [categoryId], references: [id])
+model FreeTime {
+    id String @id @default(uuid())
+    partner String
+    startAt String
+}
 
+
+model Member {
+    id String @id @default(uuid())
     userId String
-    @@index([categoryId])
+    name String @default("Member")
+    isPartner Boolean
 }
 
-model Category {
-    id    String @id @default(uuid())
-    name  String @unique
-    books Book[]
-}
+
+
+// model Book {
+//     id String @id @default(uuid())
+
+//     title       String  @db.Text
+//     description String? @db.Text
+
+//     categoryId String?
+//     category   Category? @relation(fields: [categoryId], references: [id])
+
+//     userId String
+//     @@index([categoryId])
+// }
+
+// model Category {
+//     id    String @id @default(uuid())
+//     name  String @unique
+//     books Book[]
+// }

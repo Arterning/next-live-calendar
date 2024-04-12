@@ -2,7 +2,13 @@
 
 import { Logo } from "./logo";
 import { SidebarItem } from "./sidebar-items";
-import { Book, TestTube2Icon, List, LanguagesIcon } from "lucide-react";
+import {
+  Book,
+  TestTube2Icon,
+  List,
+  LanguagesIcon,
+  Calendar,
+} from "lucide-react";
 
 const routes = [
   {
@@ -14,6 +20,11 @@ const routes = [
     icon: Book,
     label: "Books",
     href: "/book",
+  },
+  {
+    icon: Calendar,
+    label: "Calendar",
+    href: "/analytics",
   },
 ];
 
