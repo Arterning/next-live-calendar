@@ -2,7 +2,7 @@
 
 import { Logo } from "./logo";
 import { SidebarItem } from "./sidebar-items";
-import { BarChart, TestTube2Icon, List, ProjectorIcon } from "lucide-react";
+import { Book, TestTube2Icon, List, LanguagesIcon } from "lucide-react";
 
 const routes = [
   {
@@ -11,20 +11,10 @@ const routes = [
     href: "/dashboard",
   },
   {
-    icon: BarChart,
-    label: "Analytics",
-    href: "/analytics",
+    icon: Book,
+    label: "Books",
+    href: "/book",
   },
-  {
-    icon: ProjectorIcon,
-    label: "Projects",
-    href: "/projects",
-  },
-  {
-    icon: TestTube2Icon,
-    label: "Tests",
-    href: "/tests",
-  }
 ];
 
 export const Sidebar = () => {
