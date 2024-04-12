@@ -7,35 +7,33 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 interface DeleteButtonProps {
-  id?: string,
+  id?: string;
 }
 
-
-const DeleteButton : React.FC<DeleteButtonProps> = ( { id }) => {
-
+const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
   const router = useRouter();
 
   const onConfirm = async () => {
     // Implement your delete logic here
 
-    console.log(id)
+    console.log(id);
 
     const response = await axios.delete(`/api/books/${id}`);
 
-    console.log(response)
+    console.log(response);
 
-    toast.success("Deleted")
+    toast.success("Deleted");
 
-    router.push('/book');
-  }
+    router.push("/book");
+  };
 
   return (
     <ConfirmModal onConfirm={onConfirm}>
-      <div className="w-9">
+      <div className="w-9 mt-5">
         <Button variant="destructive">Delete</Button>
       </div>
     </ConfirmModal>
   );
-}
+};
 
-export default DeleteButton
+export default DeleteButton;

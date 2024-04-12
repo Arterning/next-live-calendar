@@ -7,8 +7,8 @@ import { Book, TestTube2Icon, List, LanguagesIcon } from "lucide-react";
 const routes = [
   {
     icon: List,
-    label: "DashBoard",
-    href: "/dashboard",
+    label: "Home",
+    href: "/",
   },
   {
     icon: Book,
