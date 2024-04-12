@@ -1,14 +1,12 @@
 import React from "react";
+import CalendarTable from "./calendar-table";
 
-interface ICalendarProps {}
+interface ICalendarPageProps {}
 
-const CalendarPage: React.FC<ICalendarProps> = (props) => {
+const CalendarPage: React.FC<ICalendarPageProps> = async (props) => {
   return (
     <>
-      <div>
-        <p>CalendarPage</p>
-        <div>you know waht</div>
-      </div>
+      <CalendarTable />
     </>
   );
 };
