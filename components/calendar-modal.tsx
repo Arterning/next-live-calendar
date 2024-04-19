@@ -109,7 +109,7 @@ export const ProModal = () => {
               </SelectContent>
             </Select>
 
-            <Select onValueChange={setAction} defaultValue={actions[0].id}>
+            <Select onValueChange={setAction}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a 类型" />
               </SelectTrigger>
