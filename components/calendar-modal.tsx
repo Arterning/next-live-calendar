@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { Check, Zap } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -40,12 +40,14 @@ export const ProModal = () => {
   const { data: parteners = [] } = usePartner();
 
   const onSubscribe = async () => {
+    let response;
+
     try {
       setLoading(true);
 
       console.log(partner, action, proModal.startAt, proModal.date);
 
-      const response = await axios.post("/api/reserve", {
+      response = await axios.post("/api/reserve", {
         partner,
         action,
         startAt: proModal.startAt,
@@ -54,9 +56,12 @@ export const ProModal = () => {
       // window.location.reload();
 
       toast.success("Success");
-    } catch (error) {
+    } catch (error: AxiosError | any) {
       console.log(error);
-      toast.error("Something went wrong");
+      // toast.error(response?.data.message || "Something went wrong");
+      console.log(response);
+
+      toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
       proModal.onClose();
@@ -104,7 +109,7 @@ export const ProModal = () => {
               </SelectContent>
             </Select>
 
-            <Select onValueChange={setAction}>
+            <Select onValueChange={setAction} defaultValue={actions[0].id}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a 类型" />
               </SelectTrigger>

@@ -61,9 +61,18 @@ export async function POST(req: Request) {
       console.log(free);
 
       if (free.length === 0) {
-        return new NextResponse("必须先合伙人空闲然后才能预约", {
-          status: 500,
-        });
+        // return new NextResponse("必须先合伙人空闲然后才能预约", {
+        //   status: 500,
+        // });
+        return NextResponse.json(
+          {
+            message: "必须先合伙人空闲然后才能预约",
+            code: 500,
+          },
+          {
+            status: 500,
+          }
+        );
       }
 
       const user = await clerkClient.users.getUser(userId);
