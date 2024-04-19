@@ -29,20 +29,11 @@ import { useProModal } from "@/hooks/useModal";
 export const CalendarTable = () => {
   const [date, setDate] = React.useState<Date>(new Date());
 
-  const [reserves, setReserves] = React.useState([]);
-
   const { data: parteners = [] } = usePartner();
 
   const { data: freeTimes = [] } = useFreeTime(format(date, "yyyy-MM-dd"));
 
-  React.useEffect(() => {
-    fetch("/api/reserve").then((res) => {
-      res.json().then((data) => {
-        console.log(data);
-        setReserves(data);
-      });
-    });
-  }, []);
+  const { data: reserves = [] } = useReserve(format(date, "yyyy-MM-dd"));
 
   const columns = [
     {
@@ -150,19 +141,7 @@ export const CalendarTable = () => {
           <Calendar
             mode="single"
             selected={date}
-            onSelect={(date) => {
-              setDate(date);
-              if (date) {
-                fetch(
-                  "/api/reserve?reserveAt=" + format(date, "yyyy-MM-dd") + "",
-                  {}
-                ).then((res) => {
-                  res.json().then((data) => {
-                    setReserves(data);
-                  });
-                });
-              }
-            }}
+            onSelect={(date) => setDate(date as Date)}
             initialFocus
           />
         </PopoverContent>

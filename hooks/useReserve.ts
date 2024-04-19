@@ -2,8 +2,11 @@ import useSWR from "swr";
 
 import fetcher from "@/lib/fetcher";
 
-const useReserve = (reserveAt?: Date) => {
-  const { data, error, isLoading, mutate } = useSWR("/api/reserve", fetcher);
+const useReserve = (reserveAt: string) => {
+  const { data, error, isLoading, mutate } = useSWR(
+    "/api/reserve?reserveAt=" + reserveAt,
+    fetcher
+  );
 
   return {
     data,

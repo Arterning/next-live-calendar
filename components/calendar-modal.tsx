@@ -28,6 +28,8 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useProModal } from "@/hooks/useModal";
 import usePartner from "@/hooks/usePartner";
+import useFreeTime from "@/hooks/useFreeTime";
+import { useSWRConfig } from "swr";
 
 export const ProModal = () => {
   const proModal = useProModal();
@@ -49,7 +51,9 @@ export const ProModal = () => {
         startAt: proModal.startAt,
         date: proModal.date,
       });
-      window.location.reload();
+      // window.location.reload();
+
+      toast.success("Success");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
