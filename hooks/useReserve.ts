@@ -5,7 +5,8 @@ import fetcher from "@/lib/fetcher";
 const useReserve = (reserveAt: string) => {
   const { data, error, isLoading, mutate } = useSWR(
     "/api/reserve?reserveAt=" + reserveAt,
-    fetcher
+    fetcher,
+    { refreshInterval: 1000 }
   );
 
   return {

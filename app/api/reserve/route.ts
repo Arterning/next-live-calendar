@@ -61,7 +61,9 @@ export async function POST(req: Request) {
       console.log(free);
 
       if (free.length === 0) {
-        throw new Error("Free time not found");
+        return new NextResponse("必须先合伙人空闲然后才能预约", {
+          status: 500,
+        });
       }
 
       const user = await clerkClient.users.getUser(userId);

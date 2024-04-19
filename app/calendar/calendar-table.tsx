@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import useFreeTime from "@/hooks/useFreeTime";
 import { useProModal } from "@/hooks/useModal";
+import { ColumnDef } from "@tanstack/react-table";
 
 export const CalendarTable = () => {
   const [date, setDate] = React.useState<Date>(new Date());
@@ -40,7 +41,7 @@ export const CalendarTable = () => {
       accessorKey: "reserveAt",
       header: "时间",
     },
-  ];
+  ] as ColumnDef<Record<string, any>>[];
 
   const partenersCoulumns = parteners.map((partner: Record<string, any>) => ({
     accessorKey: partner.id,
@@ -52,7 +53,8 @@ export const CalendarTable = () => {
   const proModal = useProModal();
 
   columns.push({
-    id: "actions",
+    accessorKey: "actions",
+    header: "操作",
     cell: ({ row }) => {
       const original = row.original;
 
