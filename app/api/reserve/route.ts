@@ -4,15 +4,17 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { clerkClient } from "@clerk/nextjs/server";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { reserveAt: Date } }
-) {
-  console.log("param", params);
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+
+  const param = searchParams.get("reserveAt") as string;
+
+  console.log("param", param);
+
   try {
     const reserves = await db.reserve.findMany({
       where: {
-        reserveAt: params?.reserveAt,
+        reserveAt: new Date(param),
       },
       orderBy: {
         reserveAt: "desc",
@@ -43,6 +45,7 @@ export async function POST(req: Request) {
         data: {
           partner: values.partner,
           startAt: values.startAt,
+          date: new Date(values.date),
         },
       });
     }

@@ -30,6 +30,7 @@ model FreeTime {
     id String @id @default(uuid())
     partner String
     startAt String
+    date DateTime @db.Date
 }
 
 
@@ -42,21 +43,21 @@ model Member {
 
 
 
-// model Book {
-//     id String @id @default(uuid())
+model Book {
+    id String @id @default(uuid())
 
-//     title       String  @db.Text
-//     description String? @db.Text
+    title       String  @db.Text
+    description String? @db.Text
 
-//     categoryId String?
-//     category   Category? @relation(fields: [categoryId], references: [id])
+    categoryId String?
+    category   Category? @relation(fields: [categoryId], references: [id])
 
-//     userId String
-//     @@index([categoryId])
-// }
+    userId String
+    @@index([categoryId])
+}
 
-// model Category {
-//     id    String @id @default(uuid())
-//     name  String @unique
-//     books Book[]
-// }
+model Category {
+    id    String @id @default(uuid())
+    name  String @unique
+    books Book[]
+}

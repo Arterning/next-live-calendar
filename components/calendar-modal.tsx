@@ -41,12 +41,13 @@ export const ProModal = () => {
     try {
       setLoading(true);
 
-      console.log(partner, action, proModal.startAt);
+      console.log(partner, action, proModal.startAt, proModal.date);
 
       const response = await axios.post("/api/reserve", {
         partner,
         action,
         startAt: proModal.startAt,
+        date: proModal.date,
       });
       window.location.reload();
     } catch (error) {

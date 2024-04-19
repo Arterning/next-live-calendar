@@ -27,13 +27,13 @@ import useFreeTime from "@/hooks/useFreeTime";
 import { useProModal } from "@/hooks/useModal";
 
 export const CalendarTable = () => {
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = React.useState<Date>(new Date());
 
   const [reserves, setReserves] = React.useState([]);
 
   const { data: parteners = [] } = usePartner();
 
-  const { data: freeTimes = [] } = useFreeTime();
+  const { data: freeTimes = [] } = useFreeTime(format(date, "yyyy-MM-dd"));
 
   React.useEffect(() => {
     fetch("/api/reserve").then((res) => {
@@ -80,6 +80,9 @@ export const CalendarTable = () => {
                 navigator.clipboard.writeText(original.id);
                 proModal.onOpen();
                 proModal.setStart(original.reserveAt.split(" ")[0]);
+                if (date) {
+                  proModal.setDate(format(date, "yyyy-MM-dd"));
+                }
               }}
             >
               操作
@@ -149,11 +152,16 @@ export const CalendarTable = () => {
             selected={date}
             onSelect={(date) => {
               setDate(date);
-              fetch("/api/reserve?reserveAt=" + date + "", {}).then((res) => {
-                res.json().then((data) => {
-                  setReserves(data);
+              if (date) {
+                fetch(
+                  "/api/reserve?reserveAt=" + format(date, "yyyy-MM-dd") + "",
+                  {}
+                ).then((res) => {
+                  res.json().then((data) => {
+                    setReserves(data);
+                  });
                 });
-              });
+              }
             }}
             initialFocus
           />

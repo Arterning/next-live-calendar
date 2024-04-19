@@ -24,7 +24,7 @@ const routes = [
   {
     icon: Calendar,
     label: "Calendar",
-    href: "/analytics",
+    href: "/calendar",
   },
 ];
 
