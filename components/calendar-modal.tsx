@@ -34,10 +34,11 @@ import { useSWRConfig } from "swr";
 export const ProModal = () => {
   const proModal = useProModal();
   const [loading, setLoading] = useState(false);
-  const [partner, setPartner] = useState("");
-  const [action, setAction] = useState("");
 
   const { data: parteners = [] } = usePartner();
+
+  const [partner, setPartner] = useState(parteners[0]?.id);
+  const [action, setAction] = useState("1");
 
   const onSubscribe = async () => {
     let response;
@@ -93,7 +94,7 @@ export const ProModal = () => {
             </div>
           </DialogTitle>
           <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
-            <Select onValueChange={setPartner}>
+            <Select onValueChange={setPartner} value={partner}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a 合伙人" />
               </SelectTrigger>
@@ -109,7 +110,7 @@ export const ProModal = () => {
               </SelectContent>
             </Select>
 
-            <Select onValueChange={setAction}>
+            <Select onValueChange={setAction} value={action}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a 类型" />
               </SelectTrigger>
